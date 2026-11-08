@@ -1,0 +1,1693 @@
+version: 2.1
+
+jobs:
+  bob-dev:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: mocking test matrix slowly
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; echo 93941 | factor; true ; } > /tmp/cache/l2/south.atom.asset
+            echo "gate papa-6: $(wc -c </tmp/cache/l2/south.atom.asset) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'south.atom.asset'
+  papa-6:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/south.atom.asset
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  ct4xazwi55196:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: mkdir node mods stg
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; echo 'hi' | tee /tmp/WARNING.txt; true ; } > /tmp/cache/l2/maple-3fb87.log
+            echo "gate ga-v3: $(wc -c </tmp/cache/l2/maple-3fb87.log) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'maple-3fb87.log'
+  ga-v3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/maple-3fb87.log
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  xref_CartMeasure1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: FIXME clear out broken
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; date -d '-1 hour'; true ; } > /tmp/cache/l2/SPARK_REEF
+            echo "gate validate-quick-test-matrix: $(wc -c </tmp/cache/l2/SPARK_REEF) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'SPARK_REEF'
+  validate-quick-test-matrix:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/SPARK_REEF
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  fin1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: anyway format the blog post
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; date --date '2000-01-01 + 100 days'; true ; } > /tmp/cache/l2/IndigoQueueReport
+            echo "gate node18-release: $(wc -c </tmp/cache/l2/IndigoQueueReport) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'IndigoQueueReport'
+  node18-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/IndigoQueueReport
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  o-nav:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Is the hero banner ready
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; echo "error: none" | cut -d' ' -f1; true ; } > /tmp/cache/l2/4e90452c-250b-e2b3
+            echo "gate produce-quick-regression-suite: $(wc -c </tmp/cache/l2/4e90452c-250b-e2b3) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - '4e90452c-250b-e2b3'
+  produce-quick-regression-suite:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/4e90452c-250b-e2b3
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  GraphPartial:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Hand thanks to hr
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; echo 'meeting moved to 3pm' >/tmp/Build.tmp && cp /tmp/Build.tmp /tmp/SplitMail.copy && diff /tmp/Build.tmp /tmp/SplitMail.copy && echo identical; true ; } > /tmp/cache/l2/seed-71n
+            echo "gate jul27-ship: $(wc -c </tmp/cache/l2/seed-71n) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'seed-71n'
+  jul27-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/seed-71n
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  dev28-ap:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Phase 012 attest threat feed
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; RESULT=(rack plum fixture about utils teal); printf '%s ' "${RESULT[@]}"; echo; true ; } > /tmp/cache/l2/126.202.73
+            echo "gate ship-it: $(wc -c </tmp/cache/l2/126.202.73) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - '126.202.73'
+  ship-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/126.202.73
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  vb:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Phase VII
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'first, second and third' | xargs; true ; } > /tmp/cache/l2/release_80522
+            echo "gate node18-cov: $(wc -c </tmp/cache/l2/release_80522) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'release_80522'
+  node18-cov:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/release_80522
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  kernelType:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Over and out
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; ls -gn /dev/std* | sort -k5,5nr | head -n5; true ; } > /tmp/cache/l2/receipt619
+            echo "gate rip-it: $(wc -c </tmp/cache/l2/receipt619) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'receipt619'
+  rip-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/receipt619
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  paintNewModelFile:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Wait for the search box to vanish
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; install -d -m 755 '/tmp/PrivateIssues2022-08-20'&&stat -c %a '/tmp/PrivateIssues2022-08-20'; true ; } > /tmp/cache/l2/sample-77b
+            echo "gate DEV_DEPLOY_6: $(wc -c </tmp/cache/l2/sample-77b) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'sample-77b'
+  DEV_DEPLOY_6:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/sample-77b
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  df_ContractStackPage5:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Dilute the overnight culture gently
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; ps -eo comm= | fmt -w 32 | fold -w 41 | tr -d '[:digit:]' | sort -u; true ; } > /tmp/cache/l2/mARKetpEerTENsoR
+            echo "gate cook-it: $(wc -c </tmp/cache/l2/mARKetpEerTENsoR) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'mARKetpEerTENsoR'
+  cook-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/release_80522
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  DY1D:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: busy reporting style rules
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; test -w /etc/passwd && echo "good" || echo bad; true ; } > /tmp/cache/l2/5igna1.v4113y.y1e1d.4dm1n
+            echo "gate build-nightly-integration-tests: $(wc -c </tmp/cache/l2/5igna1.v4113y.y1e1d.4dm1n) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - '5igna1.v4113y.y1e1d.4dm1n'
+  build-nightly-integration-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/release_80522
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  ALPHA_MINOR:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Started rebuilding the search index
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; grep -rn --exclude-dir='backup' case /etc/default 2>/dev/null | wc -l; true ; } > /tmp/cache/l2/ShaderEngineBetaHarbor
+            echo "gate Run_Staging7: $(wc -c </tmp/cache/l2/ShaderEngineBetaHarbor) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'ShaderEngineBetaHarbor'
+  Run_Staging7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/ShaderEngineBetaHarbor
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  qs2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Visualise the voiceover and have done with it
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'hanoi osaka' | awk '{$1=""; print}'; true ; } > /tmp/cache/l2/DJI-00013256
+            echo "gate auh-check: $(wc -c </tmp/cache/l2/DJI-00013256) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'DJI-00013256'
+  auh-check:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/DJI-00013256
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  Hash-Log:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Sear the textures
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; find /opt -maxdepth 2 -type f -not -name "*" -exec stat -c '%s %n' {} \; 2>/dev/null | sort -r; true ; } > /tmp/cache/l2/PNG-bin.SSH
+            echo "gate succes-only: $(wc -c </tmp/cache/l2/PNG-bin.SSH) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'PNG-bin.SSH'
+  succes-only:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/PNG-bin.SSH
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  CkBQiLT7TRwq:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Carry the sudoers file home
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; echo -n 'walk the dog' | od -An -tx1; true ; } > /tmp/cache/l2/PANO-97701
+            echo "gate ruby3-ship: $(wc -c </tmp/cache/l2/PANO-97701) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'PANO-97701'
+  ruby3-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/PANO-97701
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  COMMAND516:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Impute the geo buckets with checksums
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; find /proc/self -maxdepth 2 -type f -name 'cmd*' -size 0 -exec head -n 1 -q {} + 2>/dev/null | sed 's|.*/||' | sort -u; true ; } > /tmp/cache/l2/d06a4a41c995e1cae8e592d88719
+            echo "gate jan19-rev: $(wc -c </tmp/cache/l2/d06a4a41c995e1cae8e592d88719) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'd06a4a41c995e1cae8e592d88719'
+  jan19-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/release_80522
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  quinninator:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Level XI Issue Parking Passes
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; find /dev -maxdepth 1 -name "std*" | wc -l; true ; } > /tmp/cache/l2/DbLcDkUb0PR
+            echo "gate p-new: $(wc -c </tmp/cache/l2/DbLcDkUb0PR) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'DbLcDkUb0PR'
+  p-new:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/DbLcDkUb0PR
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  smaimkrantpy:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Socialize issue with SRE
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; for k in `seq 10`; do sleep 0.1; echo "${k}"; done | paste -sd ' '; true ; } > /tmp/cache/l2/v.3.20
+            echo "gate rm-router-v2-timeout: $(wc -c </tmp/cache/l2/v.3.20) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'v.3.20'
+  rm-router-v2-timeout:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/v.3.20
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  PRD-OUT-3:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Task force Meteor
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; tr a-z A-Z < /proc/cpuinfo | fold -w 29; true ; } > /tmp/cache/l2/draft-1bb42
+            echo "gate chore-3792: $(wc -c </tmp/cache/l2/draft-1bb42) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'draft-1bb42'
+  chore-3792:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/draft-1bb42
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  yiotwyshteempbot:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Analyze Replication Lag
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; grep '^/' /etc/shells | xargs -n1 basename | sort | uniq -c | sort -nr; true ; } > /tmp/cache/l2/ZyI
+            echo "gate callisto: $(wc -c </tmp/cache/l2/ZyI) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'ZyI'
+  callisto:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/ZyI
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  paint_wrap_warn_row:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: recording fail
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; cat /etc/hosts | tr -s ' \t' ' ' | tail -n5; true ; } > /tmp/cache/l2/Config.9088.59-flame
+            echo "gate UAT_INIT_7: $(wc -c </tmp/cache/l2/Config.9088.59-flame) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'Config.9088.59-flame'
+  UAT_INIT_7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/Config.9088.59-flame
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  show_max_session_split:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Go ahead and preview the podcast episode
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; cat /etc/passwd | awk -F':' '{print $1}' | head -n 6 | tac; true ; } > /tmp/cache/l2/vqCAbRF9
+            echo "gate fix-860: $(wc -c </tmp/cache/l2/vqCAbRF9) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'vqCAbRF9'
+  fix-860:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/vqCAbRF9
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  littleFog:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Totally route the hazmat shelf
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; find /opt -maxdepth 3 -type f -name "*" -exec du -ch {} + 2>/dev/null | sort -r; true ; } > /tmp/cache/l2/sample2_11d6
+            echo "gate rocket: $(wc -c </tmp/cache/l2/sample2_11d6) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'sample2_11d6'
+  rocket:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/sample2_11d6
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  on_pattern_fetch:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: harden trust store first
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; gzip -c /etc/os-release > "/tmp/eagle-2022-08-01.gz" && gzip -cd "/tmp/eagle-2022-08-01.gz"; true ; } > /tmp/cache/l2/P_51800
+            echo "gate STAGE_PROD: $(wc -c </tmp/cache/l2/P_51800) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'P_51800'
+  STAGE_PROD:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/release_80522
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  amt_kw_mul:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Kernel Attestation
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; printf "%s\n" thursday friday sunday wednesday | sort; true ; } > /tmp/cache/l2/chunk-neutron-omega-mountain
+            echo "gate depoly-17: $(wc -c </tmp/cache/l2/chunk-neutron-omega-mountain) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'chunk-neutron-omega-mountain'
+  depoly-17:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/chunk-neutron-omega-mountain
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  pairBuildClientPawnAlpha:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: draft titration
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 1 -type f -printf '%s\n' 2>/dev/null | head -n 3 | awk 'NR==1{m=$1} $1>m{m=$1} END{print m}'; true ; } > /tmp/cache/l2/surge-bison-lazy
+            echo "gate brodcast: $(wc -c </tmp/cache/l2/surge-bison-lazy) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'surge-bison-lazy'
+  brodcast:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/surge-bison-lazy
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  uniform_yankee:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: true up the FX rates NOPE
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; printf '%q\n' 'CamelCaseName'; true ; } > /tmp/cache/l2/r1J5y3sN0PEplcQhSfom0I
+            echo "gate RunImage: $(wc -c </tmp/cache/l2/r1J5y3sN0PEplcQhSfom0I) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'r1J5y3sN0PEplcQhSfom0I'
+  RunImage:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/r1J5y3sN0PEplcQhSfom0I
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  txtLOCK:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: CHECKPOINT 3 INTEGRATION SUITE REVIEW
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; find /usr/share -type d -size -2 -print 2>/dev/null|xargs -r ls -ld|head -n 5; true ; } > /tmp/cache/l2/finyv
+            echo "gate hotfix-899: $(wc -c </tmp/cache/l2/finyv) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'finyv'
+  hotfix-899:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/release_80522
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+  xcvb:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Routing Singapore edition
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; cp -v /etc/hosts ${TMPDIR:-/tmp}/lower_info.tmp; true ; } > /tmp/cache/l2/crc_6d452cc55475
+            echo "gate hu-ci: $(wc -c </tmp/cache/l2/crc_6d452cc55475) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'crc_6d452cc55475'
+  hu-ci:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Review staged file
+          command: |
+            cat /tmp/cache/l2/release_80522
+      - run:
+          name: Get fresh code
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack cached data
+          command: gunzip -c files.tgz | tar xf -
+      - run:
+          command: env ./app
+
+  ZoleV:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: The duplicate rows validated
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; printf 'a\n\n\nb\n' >/tmp/widget.bak && cat -s /tmp/widget.bak; true ; } > /tmp/cache/l2/IndigoQueueReport
+            echo "gate node18-release: $(wc -c </tmp/cache/l2/IndigoQueueReport) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'IndigoQueueReport'
+  ezez:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Cull The Cutscene Lod 1
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; ls -t -v -d --sort=extension /etc/profile.d | awk '{print length, $0}' | sort -n | tail -n 3; true ; } > /tmp/cache/l2/PNG-bin.SSH
+            echo "gate succes-only: $(wc -c </tmp/cache/l2/PNG-bin.SSH) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'PNG-bin.SSH'
+  kCNSpanKey:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Retrain the GPU pool seed 97
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; printf 'summary\t10\ntrip\t13\nlist\t15\nwolf\t88\n' >'/tmp/ser8.txt' && expand -t 12 '/tmp/ser8.txt'; true ; } > /tmp/cache/l2/receipt619
+            echo "gate rip-it: $(wc -c </tmp/cache/l2/receipt619) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'receipt619'
+  yiockxulviaex:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Next Publish Container Image
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; env -0 | tr '\0' '\n' | head -n 2; true ; } > /tmp/cache/l2/south.atom.asset
+            echo "gate papa-6: $(wc -c </tmp/cache/l2/south.atom.asset) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'south.atom.asset'
+  fillWithWave:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Count in
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; ls /dev/*random | nl; true ; } > /tmp/cache/l2/vqCAbRF9
+            echo "gate fix-860: $(wc -c </tmp/cache/l2/vqCAbRF9) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'vqCAbRF9'
+  BaCK--buFFEr:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Loot the parking passes
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; for p in {0..6} ; do echo "$p squared is $((p**2))"; done | wc -l; true ; } > /tmp/cache/l2/4e90452c-250b-e2b3
+            echo "gate produce-quick-regression-suite: $(wc -c </tmp/cache/l2/4e90452c-250b-e2b3) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - '4e90452c-250b-e2b3'
+  emitText:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: BEGIN FACT CHECK PRIVACY NOTICE
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; mkfifo "/var/tmp/sent_2022-12-15.md"&&ls -l "/var/tmp/sent_2022-12-15.md"&&rm "/var/tmp/sent_2022-12-15.md"; true ; } > /tmp/cache/l2/ZyI
+            echo "gate callisto: $(wc -c </tmp/cache/l2/ZyI) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'ZyI'
+  ichMap:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Yeet podcast episode
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; echo "Hello, World" | xargs; true ; } > /tmp/cache/l2/SPARK_REEF
+            echo "gate validate-quick-test-matrix: $(wc -c </tmp/cache/l2/SPARK_REEF) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'SPARK_REEF'
+  Mmmm:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Confirm visa paperwork by friday
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; sum /etc/passwd | cut -d' ' -f1; true ; } > /tmp/cache/l2/ShaderEngineBetaHarbor
+            echo "gate Run_Staging7: $(wc -c </tmp/cache/l2/ShaderEngineBetaHarbor) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'ShaderEngineBetaHarbor'
+  API_ZONE_FAILED:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: How many sensor readings remain
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; find /opt -maxdepth 3 -type f -not -name '*' -exec head -n 1 -q {} + 2> /dev/null|head -n 10; true ; } > /tmp/cache/l2/126.202.73
+            echo "gate ship-it: $(wc -c </tmp/cache/l2/126.202.73) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - '126.202.73'
+  reAddressCanvas:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Merge pre midnight
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; ps -u $(whoami) | head -n 3; true ; } > /tmp/cache/l2/Config.9088.59-flame
+            echo "gate UAT_INIT_7: $(wc -c </tmp/cache/l2/Config.9088.59-flame) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'Config.9088.59-flame'
+  tel_independant:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Double Tap Cart Icon Job
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; env | cut --delimiter== --fields=1 | sed 's/^/- /' | head -n 3 | nl; true ; } > /tmp/cache/l2/r1J5y3sN0PEplcQhSfom0I
+            echo "gate RunImage: $(wc -c </tmp/cache/l2/r1J5y3sN0PEplcQhSfom0I) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'r1J5y3sN0PEplcQhSfom0I'
+  a0ac61a6-a13b-3595-a854-fb:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: updating data team
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; locale -a | pr -4 -t -w 80 | cut -c1-8 | tr -cs '[:alnum:]' '\n'; true ; } > /tmp/cache/l2/sample2_11d6
+            echo "gate rocket: $(wc -c </tmp/cache/l2/sample2_11d6) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'sample2_11d6'
+  weeshsoungx:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Have a go at visualisation
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; base64 ~/.bashrc | head -n3; true ; } > /tmp/cache/l2/DbLcDkUb0PR
+            echo "gate p-new: $(wc -c </tmp/cache/l2/DbLcDkUb0PR) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'DbLcDkUb0PR'
+  proFixtureEntry:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Squawk 3016
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; { date; uname -r; whoami; } >"/tmp/lo1-draft.conf" && cat "/tmp/lo1-draft.conf"; true ; } > /tmp/cache/l2/draft-1bb42
+            echo "gate chore-3792: $(wc -c </tmp/cache/l2/draft-1bb42) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'draft-1bb42'
+  trackUrl:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: packageCanaryFleetTask
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; \grep -i nodev /proc/filesystems | wc -l; true ; } > /tmp/cache/l2/sample-77b
+            echo "gate DEV_DEPLOY_6: $(wc -c </tmp/cache/l2/sample-77b) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'sample-77b'
+  API_DECL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Dedupe since the last incident
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; limit=/harbor/agenda/tiger.txt && printf '%s\n' "${limit: -3}"; true ; } > /tmp/cache/l2/maple-3fb87.log
+            echo "gate ga-v3: $(wc -c </tmp/cache/l2/maple-3fb87.log) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'maple-3fb87.log'
+  IoT_INIT:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: okay verify the seating plan i guess
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; compgen -G "/etc/*.conf" | sort -u | xargs -n1 basename; true ; } > /tmp/cache/l2/PANO-97701
+            echo "gate ruby3-ship: $(wc -c </tmp/cache/l2/PANO-97701) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'PANO-97701'
+  barbaz:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: SEED ENEMY WAVES MANUAL
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; for num in black orange magenta cyan; do echo "item: $num"; done | nl; true ; } > /tmp/cache/l2/v.3.20
+            echo "gate rm-router-v2-timeout: $(wc -c </tmp/cache/l2/v.3.20) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'v.3.20'
+  qCenter:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Settle the commissions per entity
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; getent passwd | awk -F: '{print $1, $7}' | fmt -w 37; true ; } > /tmp/cache/l2/seed-71n
+            echo "gate jul27-ship: $(wc -c </tmp/cache/l2/seed-71n) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'seed-71n'
+  BMAZA-8290:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Edge Call
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; report=(papaya mango fig); report+=(top); echo "${report[@]}"; true ; } > /tmp/cache/l2/surge-bison-lazy
+            echo "gate brodcast: $(wc -c </tmp/cache/l2/surge-bison-lazy) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'surge-bison-lazy'
+  delta_n1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: Fast track scroll
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; printf 'host=localhost\nport=7409\nuser=chen\ndebug=true\n' |grep ^port | cut -d= -f2; true ; } > /tmp/cache/l2/DJI-00013256
+            echo "gate auh-check: $(wc -c </tmp/cache/l2/DJI-00013256) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'DJI-00013256'
+  instance-parchment:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/cache/l2
+      - run:
+          name: TokenizerServing
+          command: |
+            mkdir -p /tmp/cache/l2
+            { set +o pipefail 2>/dev/null; target=(horse shark fox frog cat); echo "${#target[1]}"; true ; } > /tmp/cache/l2/chunk-neutron-omega-mountain
+            echo "gate depoly-17: $(wc -c </tmp/cache/l2/chunk-neutron-omega-mountain) bytes total"
+      - persist_to_workspace:
+          root: /tmp/cache/l2
+          paths:
+            - 'chunk-neutron-omega-mountain'
+workflows:
+  build-and-test:
+    jobs:
+      - fin1
+      - ZoleV:
+          requires:
+            - fin1
+      - node18-release:
+          requires:
+            - ZoleV
+      - Hash-Log:
+          requires:
+            - ZoleV
+      - ezez:
+          requires:
+            - Hash-Log
+      - succes-only:
+          requires:
+            - ezez
+      - kernelType:
+          requires:
+            - ezez
+      - kCNSpanKey:
+          requires:
+            - kernelType
+      - rip-it:
+          requires:
+            - kCNSpanKey
+      - bob-dev:
+          requires:
+            - kCNSpanKey
+      - yiockxulviaex:
+          requires:
+            - bob-dev
+      - papa-6:
+          requires:
+            - yiockxulviaex
+      - show_max_session_split:
+          requires:
+            - yiockxulviaex
+      - fillWithWave:
+          requires:
+            - show_max_session_split
+      - fix-860:
+          requires:
+            - fillWithWave
+      - o-nav:
+          requires:
+            - fillWithWave
+      - BaCK--buFFEr:
+          requires:
+            - o-nav
+      - produce-quick-regression-suite:
+          requires:
+            - BaCK--buFFEr
+      - yiotwyshteempbot:
+          requires:
+            - BaCK--buFFEr
+      - emitText:
+          requires:
+            - yiotwyshteempbot
+      - callisto:
+          requires:
+            - emitText
+      - xref_CartMeasure1:
+          requires:
+            - emitText
+      - ichMap:
+          requires:
+            - xref_CartMeasure1
+      - validate-quick-test-matrix:
+          requires:
+            - ichMap
+      - ALPHA_MINOR:
+          requires:
+            - ichMap
+      - Mmmm:
+          requires:
+            - ALPHA_MINOR
+      - Run_Staging7:
+          requires:
+            - Mmmm
+      - dev28-ap:
+          requires:
+            - Mmmm
+      - API_ZONE_FAILED:
+          requires:
+            - dev28-ap
+      - ship-it:
+          requires:
+            - API_ZONE_FAILED
+      - paint_wrap_warn_row:
+          requires:
+            - API_ZONE_FAILED
+      - reAddressCanvas:
+          requires:
+            - paint_wrap_warn_row
+      - UAT_INIT_7:
+          requires:
+            - reAddressCanvas
+      - uniform_yankee
+      - tel_independant:
+          requires:
+            - uniform_yankee
+      - RunImage:
+          requires:
+            - tel_independant
+      - littleFog:
+          requires:
+            - tel_independant
+      - a0ac61a6-a13b-3595-a854-fb:
+          requires:
+            - littleFog
+      - rocket:
+          requires:
+            - a0ac61a6-a13b-3595-a854-fb
+      - quinninator:
+          requires:
+            - a0ac61a6-a13b-3595-a854-fb
+      - weeshsoungx:
+          requires:
+            - quinninator
+      - p-new:
+          requires:
+            - weeshsoungx
+      - PRD-OUT-3:
+          requires:
+            - weeshsoungx
+      - proFixtureEntry:
+          requires:
+            - PRD-OUT-3
+      - chore-3792:
+          requires:
+            - proFixtureEntry
+      - paintNewModelFile:
+          requires:
+            - proFixtureEntry
+      - trackUrl:
+          requires:
+            - paintNewModelFile
+      - DEV_DEPLOY_6:
+          requires:
+            - trackUrl
+      - ct4xazwi55196:
+          requires:
+            - trackUrl
+      - API_DECL:
+          requires:
+            - ct4xazwi55196
+      - ga-v3:
+          requires:
+            - API_DECL
+      - CkBQiLT7TRwq:
+          requires:
+            - API_DECL
+      - IoT_INIT:
+          requires:
+            - CkBQiLT7TRwq
+      - ruby3-ship:
+          requires:
+            - IoT_INIT
+      - smaimkrantpy:
+          requires:
+            - IoT_INIT
+      - barbaz:
+          requires:
+            - smaimkrantpy
+      - rm-router-v2-timeout:
+          requires:
+            - barbaz
+      - GraphPartial:
+          requires:
+            - barbaz
+      - qCenter:
+          requires:
+            - GraphPartial
+      - jul27-ship:
+          requires:
+            - qCenter
+      - pairBuildClientPawnAlpha:
+          requires:
+            - qCenter
+      - BMAZA-8290:
+          requires:
+            - pairBuildClientPawnAlpha
+      - brodcast:
+          requires:
+            - BMAZA-8290
+      - qs2:
+          requires:
+            - BMAZA-8290
+      - delta_n1:
+          requires:
+            - qs2
+      - auh-check:
+          requires:
+            - delta_n1
+      - amt_kw_mul:
+          requires:
+            - delta_n1
+      - instance-parchment:
+          requires:
+            - amt_kw_mul
+      - depoly-17:
+          requires:
+            - instance-parchment
+      - vb
+      - txtLOCK
+      - node18-cov:
+          requires:
+            - vb
+            - txtLOCK
+      - hotfix-899:
+          requires:
+            - vb
+            - txtLOCK
+      - build-nightly-integration-tests:
+          requires:
+            - vb
+            - txtLOCK
+      - hu-ci:
+          requires:
+            - vb
+            - txtLOCK
+      - cook-it:
+          requires:
+            - vb
+            - txtLOCK
+      - STAGE_PROD:
+          requires:
+            - vb
+            - txtLOCK
+      - jan19-rev:
+          requires:
+            - vb
+            - txtLOCK
